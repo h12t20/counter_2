@@ -14,7 +14,7 @@ flex-wrap: wrap;
 
 .AppLogo {
  width: 48px;
- height: 45px;
+ height: 43px;
  pointer-events: none;
 }
 
@@ -24,7 +24,7 @@ flex-wrap: wrap;
  justify-content: center;
  font-size: calc(23px + 2vmin);
  color: white;
- margin-left: 12px;
+ margin-left: 10px;
 }
 
 .logoAndHeader {
