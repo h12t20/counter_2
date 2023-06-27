@@ -56,7 +56,6 @@ function App() {
         setMaxValue(inputMaxTitle)
         setValue(inputMinTitle > value || value > inputMaxTitle ?
             inputMinTitle : value);
-       /* if (value >= inputMaxTitle) setError(value.toString())*/
         setDisable(true)
         setError(error === 'Enter values and press Set'? '': error)
     }
@@ -76,7 +75,6 @@ function App() {
     const onMouseOver = () => {
         if (error.slice(0,2) !== 'Er') {
             setError('Enter values and press Set')
-            /*setDisable(false)*/
             clearTimeout(timerID)
         }
     }
