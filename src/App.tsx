@@ -19,6 +19,7 @@ function App() {
     const [error, setError] = useState('')
     const [inputMinTitle, setInputMinTitle] = useState(storageMinValue)
     const [inputMaxTitle, setInputMaxTitle] = useState(storageMaxValue)
+    const [disable, setDisable] = useState(true)
 
     useEffect(() => localStorage.setItem('counterMinValue', minValue.toString()), [minValue])
     useEffect(() => localStorage.setItem('counterMaxValue', maxValue.toString()), [maxValue])
@@ -32,7 +33,7 @@ function App() {
     useEffect(() => {
         if (inputMinTitle < 0 && inputMaxTitle >= 1)
             setError('Err1')
-        else if ((inputMaxTitle < 1 && inputMinTitle > 0) || (inputMinTitle >= 0 && value>inputMaxTitle))
+        else if ((inputMaxTitle < 1 && inputMinTitle > 0) || (inputMinTitle >= 0 && value > inputMaxTitle))
             setError('Err2')
         else if (inputMinTitle >= inputMaxTitle || (inputMinTitle < 0 && inputMaxTitle < 1)) {
             setError('Err3')
@@ -54,26 +55,23 @@ function App() {
     const setHandler = () => {
         setMinValue(inputMinTitle)
         setMaxValue(inputMaxTitle)
-        setValue(inputMinTitle > value || value > inputMaxTitle ?
-            inputMinTitle : value);
+        setValue(value > inputMinTitle || value > inputMaxTitle ?
+            Math.min(inputMinTitle, inputMaxTitle) : value);
         setDisable(true)
-        setError(error === 'Enter values and press Set'? '': error)
+        setError(error === 'Enter values and press Set' ? '' : error)
     }
     const incHandler = () => {
         setValue(value + 1);
     }
     const resetHandler = () => {
-        let storageMinValueAsString = localStorage.getItem('counterMinValue')
-        let storageMaxValueAsString = localStorage.getItem('counterMaxValue');
         localStorage.removeItem('counterValue')
         setValue(storageMinValueAsString ? +storageMinValueAsString : 0)
         setInputMinTitle(storageMinValueAsString ? +storageMinValueAsString : 0)
         setInputMaxTitle((storageMaxValueAsString ? +storageMaxValueAsString : 10))
     }
-    const [disable, setDisable] = useState(true)
     let timerID: NodeJS.Timer
     const onMouseOver = () => {
-        if (error.slice(0,2) !== 'Er') {
+        if (error.slice(0, 2) !== 'Er') {
             setError('Enter values and press Set')
             clearTimeout(timerID)
         }
@@ -95,10 +93,11 @@ function App() {
                 <Counter value={value} resetHandler={resetHandler} error={error} incHandler={incHandler}/>
                 <Set setHandler={setHandler} inputMinChangeHandler={inputMinChangeHandler}
                      inputMaxChangeHandler={inputMaxChangeHandler} inputMinTitle={inputMinTitle}
-                     inputMaxTitle={inputMaxTitle} error={error} onClickHandler={onMouseOver}
+                     inputMaxTitle={inputMaxTitle} error={error} onMouseOver={onMouseOver}
                      disable={disable} onMouseOut={onMouseOut}/>
             </div>
         </div>
     );
 }
+
 export default App;
