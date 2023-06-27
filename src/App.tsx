@@ -30,52 +30,59 @@ function App() {
     }, [value, storageMaxValueAsString])
     useEffect(() => localStorage.setItem('errorStatus', error ? error.toString() : ''), [error])
     useEffect(() => {
-        if (inputMinTitle < 0) setError('Err1')
-        else if (inputMaxTitle < 1 || inputMaxTitle < value) setError('Err2')
-        else if (inputMinTitle >= inputMaxTitle) {
+        if (inputMinTitle < 0 && inputMaxTitle >= 1)
+            setError('Err1')
+        else if ((inputMaxTitle < 1 && inputMinTitle > 0) || (inputMinTitle >= 0 && value>inputMaxTitle))
+            setError('Err2')
+        else if (inputMinTitle >= inputMaxTitle || (inputMinTitle < 0 && inputMaxTitle < 1)) {
             setError('Err3')
-        } else if (inputMaxTitle === value) {
+        } else if (value >= maxValue) {
             setError(value.toString())
         } else if (error !== 'Enter values and press Set') {
             setError('')
         }
-    }, [inputMinTitle, inputMaxTitle, value, error]);
+    }, [inputMinTitle, inputMaxTitle, value, error, maxValue]);
 
     const inputMinChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setInputMinTitle(+e.currentTarget.value)
-
+        if (+e.currentTarget.value !== minValue) setDisable(false)
     }
     const inputMaxChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setInputMaxTitle(+e.currentTarget.value);
+        if (+e.currentTarget.value !== maxValue) setDisable(false)
     }
-
     const setHandler = () => {
         setMinValue(inputMinTitle)
         setMaxValue(inputMaxTitle)
         setValue(inputMinTitle > value || value > inputMaxTitle ?
             inputMinTitle : value);
-        if (value >= inputMaxTitle) setError(value.toString())
+       /* if (value >= inputMaxTitle) setError(value.toString())*/
         setDisable(true)
-        setError('')
+        setError(error === 'Enter values and press Set'? '': error)
     }
     const incHandler = () => {
         setValue(value + 1);
     }
     const resetHandler = () => {
         let storageMinValueAsString = localStorage.getItem('counterMinValue')
+        let storageMaxValueAsString = localStorage.getItem('counterMaxValue');
         localStorage.removeItem('counterValue')
         setValue(storageMinValueAsString ? +storageMinValueAsString : 0)
+        setInputMinTitle(storageMinValueAsString ? +storageMinValueAsString : 0)
+        setInputMaxTitle((storageMaxValueAsString ? +storageMaxValueAsString : 10))
     }
     const [disable, setDisable] = useState(true)
+    let timerID: NodeJS.Timer
     const onMouseOver = () => {
-        if (error !== 'Incorrect value!') {
+        if (error.slice(0,2) !== 'Er') {
             setError('Enter values and press Set')
-            setDisable(false)
+            /*setDisable(false)*/
+            clearTimeout(timerID)
         }
     }
     const onMouseOut = () => {
-        if (error !== 'Incorrect value!') {
-            setError('')
+        if (error.slice(0, 2) !== 'Er') {
+            timerID = setTimeout(() => setError(''), 150)
         }
     }
     return (
@@ -87,11 +94,11 @@ function App() {
                 <h1 className={s.AppHeader}>Counter</h1>
             </div>
             <div className={s.body}>
-            <Counter value={value} resetHandler={resetHandler} error={error} incHandler={incHandler}/>
-            <Set setHandler={setHandler} inputMinChangeHandler={inputMinChangeHandler}
-                 inputMaxChangeHandler={inputMaxChangeHandler} inputMinTitle={inputMinTitle}
-                 inputMaxTitle={inputMaxTitle} error={error} onClickHandler={onMouseOver}
-                 disable={disable} onMouseOut={onMouseOut}/>
+                <Counter value={value} resetHandler={resetHandler} error={error} incHandler={incHandler}/>
+                <Set setHandler={setHandler} inputMinChangeHandler={inputMinChangeHandler}
+                     inputMaxChangeHandler={inputMaxChangeHandler} inputMinTitle={inputMinTitle}
+                     inputMaxTitle={inputMaxTitle} error={error} onClickHandler={onMouseOver}
+                     disable={disable} onMouseOut={onMouseOut}/>
             </div>
         </div>
     );
