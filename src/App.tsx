@@ -31,11 +31,12 @@ function App() {
     }, [value, storageMaxValueAsString])
     useEffect(() => localStorage.setItem('errorStatus', error ? error.toString() : ''), [error])
     useEffect(() => {
-        if (inputMinTitle < 0 && inputMaxTitle >= 1)
+        if (inputMinTitle < 0 && inputMaxTitle >= 1 && value <= inputMaxTitle)
             setError('Err1')
         else if ((inputMaxTitle < 1 && inputMinTitle > 0) || (inputMinTitle >= 0 && value > inputMaxTitle))
             setError('Err2')
-        else if (inputMinTitle >= inputMaxTitle || (inputMinTitle < 0 && inputMaxTitle < 1)) {
+        else if (inputMinTitle >= inputMaxTitle || (inputMinTitle < 0 && inputMaxTitle < 1) ||
+            (inputMinTitle < 0 && value > inputMaxTitle)) {
             setError('Err3')
         } else if (value >= maxValue) {
             setError(value.toString())
