@@ -2,6 +2,7 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import s from './App.module.css';
 import {Counter} from "./Counter";
 import {Set} from "./Set";
+import logo from './logo.jpeg'
 
 function App() {
     let storageMinValueAsString = localStorage.getItem('counterMinValue');
@@ -20,6 +21,7 @@ function App() {
     const [inputMinTitle, setInputMinTitle] = useState(storageMinValue)
     const [inputMaxTitle, setInputMaxTitle] = useState(storageMaxValue)
     const [disable, setDisable] = useState(true)
+    const INF_MESSAGE = 'Enter values and press Set'
 
     useEffect(() => localStorage.setItem('counterMinValue', minValue.toString()), [minValue])
     useEffect(() => localStorage.setItem('counterMaxValue', maxValue.toString()), [maxValue])
@@ -40,7 +42,7 @@ function App() {
             setError('Err2')
         else if (value >= maxValue) {
             setError(value.toString())
-        } else if (error !== 'Enter values and press Set') {
+        } else if (error !== INF_MESSAGE) {
             setError('')
         }
     }, [inputMinTitle, inputMaxTitle, value, error, maxValue]);
@@ -59,7 +61,7 @@ function App() {
         setValue(value > inputMinTitle || value > inputMaxTitle ?
             Math.min(inputMinTitle, inputMaxTitle) : value);
         setDisable(true)
-        setError(error === 'Enter values and press Set' ? '' : error)
+        setError(error === INF_MESSAGE ? '' : error)
     }
     const incHandler = () => {
         setValue(value + 1);
@@ -73,7 +75,7 @@ function App() {
     let timerID: NodeJS.Timer
     const onMouseOver = () => {
         if (error.slice(0, 2) !== 'Er') {
-            setError('Enter values and press Set')
+            setError(INF_MESSAGE)
             clearTimeout(timerID)
         }
     }
@@ -85,8 +87,7 @@ function App() {
     return (
         <div className={s.App}>
             <div className={s.logoAndHeader}>
-                <img
-                    src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvZOFrRa-mSC68GR0LiQlqhRrZNLEcOGjPfw&usqp=CAU'
+                <img src={logo}
                     alt='logo' className={s.AppLogo}/>
                 <h1 className={s.AppHeader}>Counter</h1>
             </div>
