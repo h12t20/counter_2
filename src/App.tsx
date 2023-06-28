@@ -2,7 +2,7 @@ import React, {ChangeEvent, useEffect, useState} from 'react';
 import s from './App.module.css';
 import {Counter} from "./Counter";
 import {Set} from "./Set";
-import logo from './logo.jpeg'
+import {Logo} from './Logo'
 
 function App() {
     let storageMinValueAsString = localStorage.getItem('counterMinValue');
@@ -86,11 +86,7 @@ function App() {
     }
     return (
         <div className={s.App}>
-            <div className={s.logoAndHeader}>
-                <img src={logo}
-                    alt='logo' className={s.AppLogo}/>
-                <h1 className={s.AppHeader}>Counter</h1>
-            </div>
+            <Logo/>
             <div className={s.body}>
                 <Counter value={value} resetHandler={resetHandler} error={error} incHandler={incHandler}/>
                 <Set setHandler={setHandler} inputMinChangeHandler={inputMinChangeHandler}
@@ -101,5 +97,4 @@ function App() {
         </div>
     );
 }
-
 export default App;

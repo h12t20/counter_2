@@ -12,28 +12,6 @@ flex-wrap: wrap;
  height: 376px;
 }
 
-.AppLogo {
- width: 48px;
- height: 43px;
- pointer-events: none;
-}
-
-.AppHeader {
- display: flex;
- align-items: center;
- justify-content: center;
- font-size: calc(23px + 2vmin);
- color: white;
- margin-left: 10px;
-}
-
-.logoAndHeader {
- display: flex;
- flex-direction: row;
- align-items: center;
- justify-content: center;
-}
-
 .body {
  display: flex;
  flex-direction: row;
