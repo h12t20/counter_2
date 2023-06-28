@@ -36,7 +36,7 @@ function App() {
             setError('Err3')
         } else if (inputMinTitle < 0)
             setError('Err1')
-        else if ((inputMaxTitle < 1) || (value > inputMaxTitle))
+        else if (inputMaxTitle < 1 || value > inputMaxTitle)
             setError('Err2')
         else if (value >= maxValue) {
             setError(value.toString())
