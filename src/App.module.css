@@ -4,11 +4,11 @@
  background-color:darkslateblue;
  border-radius: 11px;
  display: flex;
- flex-direction: column;
+ flex-direction: row;
  align-items: center;
  justify-content: center;
 flex-wrap: wrap;
- width: 800px;
+ width: 760px;
  height: 376px;
 }
 
@@ -17,4 +17,28 @@ flex-wrap: wrap;
  flex-direction: row;
  align-items: center;
  justify-content: center;
+
+}
+
+@media screen and (max-width: 576px) {
+ .App {
+  text-align: center;
+  border: 3px solid white;
+  background-color:darkslateblue;
+  border-radius: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 376px;
+  height: 650px;
+ }
+
+ .body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ }
 }
