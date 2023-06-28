@@ -5,11 +5,11 @@ import {Set} from "./Set";
 import {Logo} from './Logo'
 
 function App() {
-    let storageMinValueAsString = localStorage.getItem('counterMinValue');
-    let storageMinValue = storageMinValueAsString ? +storageMinValueAsString : 0;
-    let storageMaxValueAsString = localStorage.getItem('counterMaxValue');
-    let storageMaxValue = storageMaxValueAsString ? +storageMaxValueAsString : 10;
-    let storageValueAsString = localStorage.getItem('counterValue');
+    const storageMinValueAsString = localStorage.getItem('counterMinValue');
+    const storageMinValue = storageMinValueAsString ? +storageMinValueAsString : 0;
+    const storageMaxValueAsString = localStorage.getItem('counterMaxValue');
+    const storageMaxValue = storageMaxValueAsString ? +storageMaxValueAsString : 10;
+    const storageValueAsString = localStorage.getItem('counterValue');
     const [value, setValue] = useState(() => {
         return storageValueAsString && storageMinValueAsString ?
             Math.max(+storageValueAsString, +storageMinValueAsString) : storageValueAsString ?
