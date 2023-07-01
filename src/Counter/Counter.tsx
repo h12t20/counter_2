@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Counter.module.css';
-import {Button} from "./Button";
+import {Button} from "../Button/Button";
 
 export type PropsType = {
     error: string

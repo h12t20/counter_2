@@ -1,8 +1,8 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import s from './App.module.css';
-import {Counter} from "./Counter";
-import {Set} from "./Set";
-import {Logo} from './Logo'
+import {Counter} from "../Counter/Counter";
+import {Set} from "../Set/Set";
+import {Logo} from '../Logo/Logo'
 
 function App() {
     const storageMinValueAsString = localStorage.getItem('counterMinValue');

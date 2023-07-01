@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from 'react';
 import s from './Set.module.css'
-import {Button} from "./Button";
-import {Input} from "./Input";
+import {Button} from "../Button/Button";
+import {Input} from "../Input/Input";
 
 export type SetPropsType = {
     inputMinTitle: number;
