@@ -12,13 +12,11 @@ flex-wrap: wrap;
  width: 334px;
  height: 296px;
 }
-
 .body {
  display: flex;
  flex-direction: row;
  align-items: center;
  justify-content: center;
-
 }
 
 
