@@ -45,11 +45,11 @@
 
 .button {
  border-radius: 7px;
- width: 65px;
+ width: 60px;
  height: 35px;
  text-align: center;
  font-size: 20px;
- margin: 8px 11px 15px;
+ margin: 8px 10px 5px;
 }
 
 .buttonBlock {
