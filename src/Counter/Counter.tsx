@@ -23,7 +23,7 @@ export function Counter(props: PropsType) {
                         name='inc' className={s.button}></Button>
                 <Button disable={false} callback={props.resetHandler} name='reset'
                         className={s.button}></Button>
-                <NavLink to='/set2'><Button disable={false} name='set'
+                <NavLink to='/set_2'><Button disable={false} name='set'
                                            className={s.button}></Button></NavLink>
             </div>
         </div>

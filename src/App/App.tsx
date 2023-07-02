@@ -67,10 +67,10 @@ function App() {
             <div className={s.body}>
                 <BrowserRouter>
                     <Routes>
-                        <Route path='/counter2'
+                        <Route path='/counter_2'
                                element={<Counter error={error} incHandler={incHandler} resetHandler={resetHandler}
                                                  value={value}/>}/>
-                        <Route path='/set2'
+                        <Route path='/set_2'
                                element={<Set setHandler={setHandler} inputMinChangeHandler={inputMinChangeHandler}
                                              inputMaxChangeHandler={inputMaxChangeHandler}
                                              inputMinTitle={inputMinTitle}
