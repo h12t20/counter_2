@@ -19,12 +19,12 @@ export function Set(props: SetPropsType) {
             <div className={s.blockInputs}>
                 <div className={s.input1}>
                     <Input title={props.inputMaxTitle} name='max value'
-                           className={props.error === 'Er1' ?
+                           className={props.error === 'Err1' ?
                                s.error : s.input} callback={props.inputMaxChangeHandler}/>
                 </div>
                 <div className={s.input2}>
                     <Input title={props.inputMinTitle} name='start value'
-                           className={props.error === 'Er2' || props.error === 'Er1' ?
+                           className={props.error.slice(0,2) === 'Er'?
                                s.error : s.input} callback={props.inputMinChangeHandler}/>
                 </div>
             </div>
