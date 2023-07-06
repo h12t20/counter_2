@@ -46,19 +46,20 @@ export const reducer = (state: StateType, action: ReducerType): StateType => {
             }
         }
         case 'SET_HANDLER': {
-            return {
+            return state.error.slice(0,2)!=='Er'? {
                 ...state,
                 minValue: state.inputMinTitle,
                 maxValue: state.inputMaxTitle,
                 value: state.inputMinTitle,
-            }
+                error:''
+            }: state
         }
         case 'INC_HANDLER': {
-            return {
+            return state.error.slice(0,2)!=='Er'? {
                 ...state,
-                value: state.value < state.maxValue ? state.value + 1 : state.value,
+                value: state.value < state.maxValue ? state.value + 1 : state.maxValue,
                 error: !state.error && state.value >= state.maxValue - 1 ? state.value.toString() : state.error
-            }
+            } : state
         }
         default:
             return state
