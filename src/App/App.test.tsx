@@ -18,6 +18,10 @@ test('test with any state', () => {
     },{type:'RESET'})).toStrictEqual({value:2, minValue:2, maxValue:33, inputMinTitle: 2,
         inputMaxTitle: 33, error: ''})
 
+    expect(reducer({value: 6, minValue: 4, maxValue: 33, inputMinTitle: 6, inputMaxTitle: 15, error:'30'
+    },{type:'RESET'})).toStrictEqual({value:4, minValue:4, maxValue:33, inputMinTitle: 4,
+        inputMaxTitle: 33, error: ''})
+
     expect(reducer({value: 6, minValue: 2, maxValue: 33, inputMinTitle: 6, inputMaxTitle: 15, error:'Err2'
     },{type:'MIN_TITLE', payload: {value:'12'}
     })).toStrictEqual({value: 6, minValue: 2, maxValue: 33, inputMinTitle: 12, inputMaxTitle: 15, error:''})
