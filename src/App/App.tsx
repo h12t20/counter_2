@@ -49,8 +49,10 @@ function App() {
         <div className={s.App}>
             <Logo/>
             <div className={s.body}>
-                <HashRouter>
+                <BrowserRouter>
                     <Routes>
+                        <Route path='/' element={<Navigate to={'/counter'}/>}/>
+
                         <Route path='/counter_2'
                                element={<Counter error={state.error} incHandler={incHandler} resetHandler={resetHandler}
                                                  value={state.value}/>}/>
@@ -60,7 +62,7 @@ function App() {
                                              inputMinTitle={state.inputMinTitle}
                                              inputMaxTitle={state.inputMaxTitle} error={state.error}/>}/>
                     </Routes>
-                </HashRouter>
+                </BrowserRouter>
             </div>
         </div>
     );

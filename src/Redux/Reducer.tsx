@@ -56,7 +56,7 @@ export const reducer = (state: StateType, action: ReducerType): StateType => {
                 inputMinTitle: +action.payload.value <= state.inputMaxTitle &&
                 +action.payload.value >= -1 ?
                     +action.payload.value : state.inputMinTitle,
-                error: +action.payload.value >= state.inputMaxTitle ? 'Err1' :
+                error: +action.payload.value >= state.inputMaxTitle || state.inputMaxTitle<1? 'Err1' :
                     +action.payload.value < 0 ? 'Err2' : state.value >= state.maxValue ? state.value.toString() : ''
             }
         }
@@ -66,7 +66,7 @@ export const reducer = (state: StateType, action: ReducerType): StateType => {
                 inputMaxTitle: +action.payload.value >= state.inputMinTitle &&
                 +action.payload.value >= 0 ?
                     +action.payload.value : state.inputMaxTitle,
-                error: +action.payload.value <= state.inputMinTitle ? 'Err1' :
+                error: +action.payload.value<1 || +action.payload.value <= state.inputMinTitle ? 'Err1' :
                     state.value >= state.maxValue ? state.value.toString() : ''
             }
         }

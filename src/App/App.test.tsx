@@ -38,6 +38,10 @@ test('test with any state', () => {
     },{type:'MIN_TITLE', payload: {value:'16'}
     })).toStrictEqual({value: 6, minValue: 2, maxValue: 33, inputMinTitle: 15, inputMaxTitle: 15, error:'Err1'})
 
+    expect(reducer({value: 6, minValue: 2, maxValue: 33, inputMinTitle: 0, inputMaxTitle: 0, error:''
+    },{type:'MIN_TITLE', payload: {value:'-1'}
+    })).toStrictEqual({value: 6, minValue: 2, maxValue: 33, inputMinTitle: -1, inputMaxTitle: 0, error:'Err1'})
+
     expect(reducer({value: 6, minValue: 2, maxValue: 33, inputMinTitle: 15, inputMaxTitle: 15, error:'Err1'
     },{type:'MIN_TITLE', payload: {value:'14'}
     })).toStrictEqual({value: 6, minValue: 2, maxValue: 33, inputMinTitle: 14, inputMaxTitle: 15, error:''})
@@ -49,6 +53,10 @@ test('test with any state', () => {
     expect(reducer({value: 6, minValue: 2, maxValue: 33, inputMinTitle: 15, inputMaxTitle: 15, error:'Err1'
     },{type:'MAX_TITLE', payload: {value:'16'}
     })).toStrictEqual({value: 6, minValue: 2, maxValue: 33, inputMinTitle: 15, inputMaxTitle: 16, error:''})
+
+    expect(reducer({value: 6, minValue: 2, maxValue: 33, inputMinTitle: -1, inputMaxTitle: 120, error:''
+    },{type:'MAX_TITLE', payload: {value:'0'}
+    })).toStrictEqual({value: 6, minValue: 2, maxValue: 33, inputMinTitle: -1, inputMaxTitle: 0, error:'Err1'})
 
     expect(reducer({value: 6, minValue: 2, maxValue: 33, inputMinTitle: 15, inputMaxTitle: 16, error:''
     },{type:'MAX_TITLE', payload: {value:'15'}
