@@ -56,7 +56,7 @@ function App() {
                         <Route path='/counter_2'
                                element={<Counter error={state.error} incHandler={incHandler} resetHandler={resetHandler}
                                                  value={state.value}/>}/>
-                        <Route path='/set_2'
+                        <Route path='/counter_2/set'
                                element={<Set setHandler={setHandler} inputMinChangeHandler={inputMinChangeHandler}
                                              inputMaxChangeHandler={inputMaxChangeHandler}
                                              inputMinTitle={state.inputMinTitle}
