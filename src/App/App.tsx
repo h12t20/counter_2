@@ -3,7 +3,7 @@ import s from './App.module.css';
 import {Counter} from "../Counter/Counter";
 import {Set} from "../Set/Set";
 import {Logo} from '../Logo/Logo';
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import {incHandlerAC, maxTitleChangeAC, minTitleChangeAC, reducer, resetAC, setHandlerAC, StateType} from "../Redux/Reducer";
 
 function App() {
@@ -51,6 +51,8 @@ function App() {
             <div className={s.body}>
                 <BrowserRouter>
                     <Routes>
+                        <Route path='/' element={<Navigate to={'/counter_2'}/>}/>
+
                         <Route path='/counter_2'
                                element={<Counter error={state.error} incHandler={incHandler} resetHandler={resetHandler}
                                                  value={state.value}/>}/>
