@@ -7,6 +7,7 @@ export const Logo = () => {
             <img src={logo}
                  alt='logo' className={s.AppLogo}/>
             <h1 className={s.AppHeader}>Counter</h1>
+
         </div>
     )
 }
