@@ -3,7 +3,7 @@ import s from './App.module.css';
 import {Counter} from "../Counter/Counter";
 import {Set} from "../Set/Set";
 import {Logo} from '../Logo/Logo';
-import {HashRouter, Navigate, Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import {
     incHandlerAC,
     maxTitleChangeAC,
