@@ -3,6 +3,7 @@ import s from './Set.module.css'
 import {Button} from "../Button/Button";
 import {Input} from "../Input/Input";
 import {NavLink} from "react-router-dom";
+import {PATH} from "../Counter/Counter";
 
 export type SetPropsType = {
     inputMinTitle: number;
@@ -29,7 +30,7 @@ export function Set(props: SetPropsType) {
                 </div>
             </div>
             <div className={s.buttonBlock}>
-                <NavLink to='/counter_2'><Button disable={props.error[0]==='E'}
+                <NavLink to={PATH.COUNTER}><Button disable={props.error[0]==='E'}
                                            callback={props.setHandler} name='set'
                                            className={s.button}></Button></NavLink>
             </div>

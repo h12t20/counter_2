@@ -49,20 +49,20 @@ function App() {
         <div className={s.App}>
             <Logo/>
             <div className={s.body}>
-                <BrowserRouter>
+                <HashRouter>
                     <Routes>
-                        <Route path='/' element={<Navigate to={'/counter'}/>}/>
 
-                        <Route path='/counter_2'
+                        <Route path='/' element={<Navigate to={'/counter'}/>}/>
+                        <Route path='/counter'
                                element={<Counter error={state.error} incHandler={incHandler} resetHandler={resetHandler}
                                                  value={state.value}/>}/>
-                        <Route path='/counter_2/set'
+                        <Route path='/set'
                                element={<Set setHandler={setHandler} inputMinChangeHandler={inputMinChangeHandler}
                                              inputMaxChangeHandler={inputMaxChangeHandler}
                                              inputMinTitle={state.inputMinTitle}
                                              inputMaxTitle={state.inputMaxTitle} error={state.error}/>}/>
                     </Routes>
-                </BrowserRouter>
+                </HashRouter>
             </div>
         </div>
     );
