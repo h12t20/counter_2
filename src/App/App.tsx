@@ -3,8 +3,16 @@ import s from './App.module.css';
 import {Counter} from "../Counter/Counter";
 import {Set} from "../Set/Set";
 import {Logo} from '../Logo/Logo';
-import {BrowserRouter, HashRouter, Navigate, Route, Routes} from "react-router-dom";
-import {incHandlerAC, maxTitleChangeAC, minTitleChangeAC, reducer, resetAC, setHandlerAC, StateType} from "../Redux/Reducer";
+import {HashRouter, Navigate, Route, Routes} from "react-router-dom";
+import {
+    incHandlerAC,
+    maxTitleChangeAC,
+    minTitleChangeAC,
+    reducer,
+    resetAC,
+    setHandlerAC,
+    StateType
+} from "../Redux/Reducer";
 
 function App() {
     const storageMinValueAsString = localStorage.getItem('counterMinValue');
@@ -49,7 +57,6 @@ function App() {
         <div className={s.App}>
             <Logo/>
             <div className={s.body}>
-                <HashRouter>
                     <Routes>
 
                         <Route path='/' element={<Navigate to={'/counter'}/>}/>
@@ -62,7 +69,6 @@ function App() {
                                              inputMinTitle={state.inputMinTitle}
                                              inputMaxTitle={state.inputMaxTitle} error={state.error}/>}/>
                     </Routes>
-                </HashRouter>
             </div>
         </div>
     );
