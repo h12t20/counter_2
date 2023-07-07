@@ -3,7 +3,7 @@ import s from './App.module.css';
 import {Counter} from "../Counter/Counter";
 import {Set} from "../Set/Set";
 import {Logo} from '../Logo/Logo';
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import {PATH} from "../Counter/Counter";
 import {
     incHandlerAC,
@@ -33,6 +33,7 @@ function App() {
         inputMaxTitle: storageMaxValue
     }
     const [state, dispatchState] = useReducer(reducer, initialState)
+    const navigate = useNavigate()
 
     useEffect(() => localStorage.setItem('counterMinValue', state.minValue.toString()), [state.minValue])
     useEffect(() => localStorage.setItem('counterMaxValue', state.maxValue.toString()), [state.maxValue])
@@ -46,6 +47,7 @@ function App() {
     }
     const setHandler = () => {
         dispatchState(setHandlerAC());
+        navigate(PATH.COUNTER)
     }
     const incHandler = () => {
         dispatchState(incHandlerAC());
@@ -58,18 +60,18 @@ function App() {
         <div className={s.App}>
             <Logo/>
             <div className={s.body}>
-                    <Routes>
+                <Routes>
 
-                        <Route path='/' element={<Navigate to={PATH.COUNTER}/>}/>
-                        <Route path={PATH.COUNTER}
-                               element={<Counter error={state.error} incHandler={incHandler} resetHandler={resetHandler}
-                                                 value={state.value}/>}/>
-                        <Route path={PATH.SET}
-                               element={<Set setHandler={setHandler} inputMinChangeHandler={inputMinChangeHandler}
-                                             inputMaxChangeHandler={inputMaxChangeHandler}
-                                             inputMinTitle={state.inputMinTitle}
-                                             inputMaxTitle={state.inputMaxTitle} error={state.error}/>}/>
-                    </Routes>
+                    <Route path='/' element={<Navigate to={PATH.COUNTER}/>}/>
+                    <Route path={PATH.COUNTER}
+                           element={<Counter error={state.error} incHandler={incHandler} resetHandler={resetHandler}
+                                             value={state.value}/>}/>
+                    <Route path={PATH.SET}
+                           element={<Set setHandler={setHandler} inputMinChangeHandler={inputMinChangeHandler}
+                                         inputMaxChangeHandler={inputMaxChangeHandler}
+                                         inputMinTitle={state.inputMinTitle}
+                                         inputMaxTitle={state.inputMaxTitle} error={state.error}/>}/>
+                </Routes>
             </div>
         </div>
     );

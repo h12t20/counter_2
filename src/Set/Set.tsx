@@ -2,8 +2,6 @@ import React, {ChangeEvent} from 'react';
 import s from './Set.module.css'
 import {Button} from "../Button/Button";
 import {Input} from "../Input/Input";
-import {NavLink} from "react-router-dom";
-import {PATH} from "../Counter/Counter";
 
 export type SetPropsType = {
     inputMinTitle: number;
@@ -25,14 +23,14 @@ export function Set(props: SetPropsType) {
                 </div>
                 <div className={s.input2}>
                     <Input title={props.inputMinTitle} name='start value'
-                           className={props.error.slice(0,2) === 'Er'?
+                           className={props.error.slice(0, 2) === 'Er' ?
                                s.error : s.input} callback={props.inputMinChangeHandler}/>
                 </div>
             </div>
             <div className={s.buttonBlock}>
-                <NavLink to={PATH.COUNTER}><Button disable={props.error[0]==='E'}
-                                           callback={props.setHandler} name='set'
-                                           className={s.button}></Button></NavLink>
+                <Button disable={props.error[0] === 'E'}
+                        callback={props.setHandler} name='set'
+                        className={s.button}></Button>
             </div>
         </div>
     );

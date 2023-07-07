@@ -1,7 +1,7 @@
 import React from "react";
 type ButtonPropsType = {
     name: string
-    callback?: () => void
+    callback: () => void
     className: string
     disable:boolean
 }
