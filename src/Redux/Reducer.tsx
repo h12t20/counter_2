@@ -67,7 +67,7 @@ export const reducer = (state: StateType, action: ReducerType): StateType => {
                 +action.payload.value >= 0 ?
                     +action.payload.value : state.inputMaxTitle,
                 error: +action.payload.value<1 || +action.payload.value <= state.inputMinTitle ? 'Err1' :
-                    state.value >= state.maxValue ? state.value.toString() : ''
+                    state.inputMinTitle<0 ? 'Err2': state.value >= state.maxValue ? state.value.toString() : ''
             }
         }
         case 'SET_HANDLER': {
