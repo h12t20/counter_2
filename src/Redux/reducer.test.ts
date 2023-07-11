@@ -1,6 +1,6 @@
 import {reducer} from "./Reducer";
 
-test('test with any state', () => {
+test('differentStateTest', () => {
     expect(reducer({value: 1, minValue: 0, maxValue: 5, inputMinTitle: 3, inputMaxTitle: 8, error:'Err1'
     },{type:'RESET'})).toStrictEqual({value:0, minValue:0, maxValue:5, inputMinTitle: 0,
         inputMaxTitle: 5, error: ''})
