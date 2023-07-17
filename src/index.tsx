@@ -5,9 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import './index.css';
 import {HashRouter} from "react-router-dom";
 import {store} from "./Redux/store";
-import {Provider} from "react-redux";
 import {StateType} from "./Redux/reducer";
-
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );

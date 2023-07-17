@@ -6,7 +6,6 @@ import {Logo} from '../Logo/Logo';
 import {Navigate, Route, Routes, useNavigate} from "react-router-dom";
 import {PATH} from "../Counter/Counter";
 import {store} from "../Redux/store";
-
 import {
     incHandlerAC,
     maxTitleChangeAC,
@@ -14,15 +13,12 @@ import {
     resetAC,
     setHandlerAC
 } from "../Redux/reducer";
-
 function App() {
     const navigate = useNavigate()
-    let state=store.getState()
-
+    let state = store.getState()
     useEffect(() => localStorage.setItem('counterMinValue', state.minValue.toString()), [state.minValue])
     useEffect(() => localStorage.setItem('counterMaxValue', state.maxValue.toString()), [state.maxValue])
     useEffect(() => localStorage.setItem('counterValue', state.value.toString()), [state.value])
-
     const inputMinChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         store.dispatch(minTitleChangeAC(e.currentTarget.value));
     }
@@ -45,7 +41,6 @@ function App() {
             <Logo/>
             <div className={s.body}>
                 <Routes>
-
                     <Route path='/' element={<Navigate to={PATH.COUNTER}/>}/>
                     <Route path={PATH.COUNTER}
                            element={<Counter error={state.error} incHandler={incHandler} resetHandler={resetHandler}
@@ -60,5 +55,4 @@ function App() {
         </div>
     );
 }
-
 export default App;
