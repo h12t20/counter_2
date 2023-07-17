@@ -1,4 +1,4 @@
-import {reducer} from "./Reducer";
+import {reducer} from "./reducer";
 
 test('differentStateTest', () => {
     expect(reducer({value: 1, minValue: 0, maxValue: 5, inputMinTitle: 3, inputMaxTitle: 8, error:'Err1'

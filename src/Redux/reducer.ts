@@ -1,3 +1,19 @@
+const storageMinValueAsString = localStorage.getItem('counterMinValue');
+const storageMinValue = storageMinValueAsString ? +storageMinValueAsString : 0;
+const storageMaxValueAsString = localStorage.getItem('counterMaxValue');
+const storageMaxValue = storageMaxValueAsString ? +storageMaxValueAsString : 10;
+const storageValueAsString = localStorage.getItem('counterValue');
+export const initialState: StateType = {
+    value: storageValueAsString && storageMinValueAsString ?
+        Math.max(+storageValueAsString, +storageMinValueAsString) : storageValueAsString ?
+            +storageValueAsString : storageMinValueAsString ? +storageMinValueAsString : 0,
+    minValue: storageMinValue,
+    maxValue: storageMaxValue,
+    error: storageValueAsString && storageMaxValueAsString && (+storageValueAsString >=
+        +storageMaxValueAsString) ? storageValueAsString : '',
+    inputMinTitle: storageMinValue,
+    inputMaxTitle: storageMaxValue
+}
 export type StateType = {
     value: number
     minValue: number
@@ -6,7 +22,7 @@ export type StateType = {
     inputMinTitle: number
     inputMaxTitle: number
 }
-type ReducerType = ResetACType | MinTitleChangeACType | MaxTitleChangeACType | SetHandlerACType | IncHandlerACType
+export type ActionType = ResetACType | MinTitleChangeACType | MaxTitleChangeACType | SetHandlerACType | IncHandlerACType
 type ResetACType = ReturnType<typeof resetAC>
 type MinTitleChangeACType = ReturnType<typeof minTitleChangeAC>
 type MaxTitleChangeACType = ReturnType<typeof maxTitleChangeAC>
@@ -39,7 +55,7 @@ export const incHandlerAC = () => {
         type: 'INC_HANDLER'
     } as const
 }
-export const reducer = (state: StateType, action: ReducerType): StateType => {
+export const reducer = (state: StateType = initialState, action: ActionType): StateType => {
     switch (action.type) {
         case 'RESET': {
             return {
