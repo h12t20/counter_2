@@ -9,7 +9,7 @@ export type InputPropsType = {
 }
 export const Input = (props: InputPropsType) => {
     return (
-        <label className={s.label}>{props.name}: <input id='1' value={props.title}
+        <label className={s.label}>{props.name}: <input value={props.title}
                                                         name={props.name} className={props.className}
                                                         type='number' onChange={props.callback}/></label>
     );

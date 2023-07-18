@@ -2,6 +2,8 @@ import React, {ChangeEvent} from 'react';
 import s from './Set.module.css'
 import {Button} from "../Button/Button";
 import {Input} from "../Input/Input";
+import {Link, useNavigate} from "react-router-dom";
+import {PATH} from "../Counter/Counter";
 
 export type SetPropsType = {
     inputMinTitle: number;
@@ -13,6 +15,7 @@ export type SetPropsType = {
 }
 
 export function Set(props: SetPropsType) {
+    const navigate = useNavigate()
     return (
         <div className={s.set}>
             <div className={s.blockInputs}>
@@ -28,9 +31,13 @@ export function Set(props: SetPropsType) {
                 </div>
             </div>
             <div className={s.buttonBlock}>
-                <Button disable={props.error[0] === 'E'}
-                        callback={props.setHandler} name='set'
-                        className={s.button}></Button>
+                    <Button disable={props.error[0] === 'E'}
+                            callback={() => {
+                                props.setHandler();
+                                navigate(PATH.COUNTER)
+                            }}
+                            name='set'
+                            className={s.button}></Button>
             </div>
         </div>
     );

@@ -4,26 +4,23 @@ import App from './App/App';
 import reportWebVitals from './reportWebVitals';
 import s from './index.module.css'
 import {HashRouter} from "react-router-dom";
+import {Provider} from "react-redux";
 import {store} from "./Redux/store";
-import {StateType} from "./Redux/reducer";
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
-const rerenderEntireTree = (state: StateType) => {
-    root.render(
-        <HashRouter>
-            <React.StrictMode>
-                <div className={s.index}>
+
+root.render(
+    <HashRouter>
+        <React.StrictMode>
+            <div className={s.index}>
+                <Provider store={store}>
                     <App/>
-                </div>
-            </React.StrictMode>
-        </HashRouter>
-    )
-}
-rerenderEntireTree(store.getState())
-store.subscribe(() => {
-    let state: StateType = store.getState()
-    rerenderEntireTree(state)
-})
+                </Provider>
+            </div>
+        </React.StrictMode>
+    </HashRouter>
+)
+
 reportWebVitals();
