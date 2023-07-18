@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 import s from './Set.module.css'
 import {Button} from "../Button/Button";
 import {Input} from "../Input/Input";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import {PATH} from "../Counter/Counter";
 
 export type SetPropsType = {
