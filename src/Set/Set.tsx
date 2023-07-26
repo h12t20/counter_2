@@ -4,40 +4,42 @@ import {Button} from "../Button/Button";
 import {Input} from "../Input/Input";
 import {useNavigate} from "react-router-dom";
 import {PATH} from "../Counter/Counter";
+import {useDispatch, useSelector} from "react-redux";
+import {maxTitleChangeAC, minTitleChangeAC, setHandlerAC, StateType} from "../Redux/reducer";
 
-export type SetPropsType = {
-    inputMinTitle: number;
-    inputMaxTitle: number;
-    inputMinChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void
-    inputMaxChangeHandler: (e: ChangeEvent<HTMLInputElement>) => void
-    setHandler: () => void
-    error: string
-}
-
-export function Set(props: SetPropsType) {
+export function Set() {
     const navigate = useNavigate()
+    const inputMinTitle = useSelector<StateType, number>(state =>
+        state.inputMinTitle);
+    const inputMaxTitle = useSelector<StateType, number>(state =>
+        state.inputMaxTitle);
+    const error = useSelector<StateType, string>(state =>
+        state.error);
+    const dispatch = useDispatch();
     return (
         <div className={s.set}>
             <div className={s.blockInputs}>
                 <div className={s.input1}>
-                    <Input title={props.inputMaxTitle} name='max value'
-                           className={props.error === 'Err1' ?
-                               s.error : s.input} callback={props.inputMaxChangeHandler}/>
+                    <Input title={inputMaxTitle} name='max value'
+                           className={error === 'Err1' ?
+                               s.error : s.input} callback={(e: ChangeEvent<HTMLInputElement>) =>
+                        dispatch(maxTitleChangeAC(e.currentTarget.value))}/>
                 </div>
                 <div className={s.input2}>
-                    <Input title={props.inputMinTitle} name='start value'
-                           className={props.error.slice(0, 2) === 'Er' ?
-                               s.error : s.input} callback={props.inputMinChangeHandler}/>
+                    <Input title={inputMinTitle} name='start value'
+                           className={error.slice(0, 2) === 'Er' ?
+                               s.error : s.input} callback={(e: ChangeEvent<HTMLInputElement>) =>
+                        dispatch(minTitleChangeAC(e.currentTarget.value))}/>
                 </div>
             </div>
             <div className={s.buttonBlock}>
-                    <Button disable={props.error[0] === 'E'}
-                            callback={() => {
-                                props.setHandler();
-                                navigate(PATH.COUNTER)
-                            }}
-                            name='set'
-                            className={s.button}></Button>
+                <Button disable={error[0] === 'E'}
+                        callback={() => {
+                            dispatch(setHandlerAC());
+                            navigate(PATH.COUNTER)
+                        }}
+                        name='set'
+                        className={s.button}></Button>
             </div>
         </div>
     );

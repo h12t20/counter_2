@@ -2,9 +2,8 @@ import React from 'react';
 import s from './App.module.css';
 import {Logo} from '../Logo/Logo';
 import {Navigate, Route, Routes} from "react-router-dom";
-import {PATH} from "../Counter/Counter";
-import {SetContainer} from "../Set/SetContainer";
-import {CounterContainer} from "../Counter/CounterContainer";
+import {Counter, PATH} from "../Counter/Counter";
+import {Set} from "../Set/Set";
 
 function App() {
     return (
@@ -14,9 +13,9 @@ function App() {
                 <Routes>
                     <Route path='/' element={<Navigate to={PATH.COUNTER}/>}/>
                     <Route path={PATH.COUNTER}
-                           element={<CounterContainer/>}/>
+                           element={<Counter/>}/>
                     <Route path={PATH.SET}
-                           element={<SetContainer/>}/>
+                           element={<Set/>}/>
                 </Routes>
             </div>
         </div>
