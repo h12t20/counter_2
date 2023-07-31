@@ -91,7 +91,7 @@ test('differentStateTest', () => {
         value: 6,
         minValue: 2,
         maxValue: 33,
-        inputMinTitle: 6,
+        inputMinTitle: -1,
         inputMaxTitle: 15,
         error: 'Err2',
         displaySet: true
@@ -128,7 +128,7 @@ test('differentStateTest', () => {
         displaySet: true
     }, {
         type: 'MIN_TITLE',
-        payload: {value: '16'}
+        payload: {value: '18'}
     })).toStrictEqual({
         value: 6,
         minValue: 2,

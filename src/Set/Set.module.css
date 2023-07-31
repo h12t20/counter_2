@@ -2,17 +2,18 @@
  background-color: white;
   color: black;
  border-radius: 7px;
- width: 60px;
+ width: 70px;
  height: 25px;
  font-size: 18px;
  text-align: center;
  margin: 3px 0 5px;
+ cursor: pointer;
 }
 .error {
  background-color: red;
  color: black;
  border-radius: 7px;
- width: 60px;
+ width: 70px;
  height: 25px;
  font-size: 18px;
  text-align: center;
@@ -37,7 +38,8 @@
  height: 35px;
  text-align: center;
  font-size: 20px;
- margin: 8px 0 5px 0
+ margin: 8px 0 5px 0;
+ cursor: pointer;
 }
 .buttonBlock {
  width: 260px;

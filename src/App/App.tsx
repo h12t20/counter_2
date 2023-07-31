@@ -7,6 +7,7 @@ import {useSelector} from "react-redux";
 import {StateType} from "../Redux/reducer";
 
 function App() {
+    document.title='Counter';
     const displaySet = useSelector<StateType, boolean>(state =>
         state.displaySet);
     return (
