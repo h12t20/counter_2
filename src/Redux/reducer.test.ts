@@ -302,7 +302,7 @@ test('differentStateTest', () => {
         minValue: 2,
         maxValue: 33,
         inputMinTitle: 15,
-        inputMaxTitle: 16,
+        inputMaxTitle: 0,
         error: 'Err1',
         displaySet: true
     })
@@ -365,7 +365,7 @@ test('differentStateTest', () => {
         minValue: 2,
         maxValue: 33,
         inputMinTitle: 15,
-        inputMaxTitle: 16,
+        inputMaxTitle: 15,
         error: 'Err1',
         displaySet: true
     })

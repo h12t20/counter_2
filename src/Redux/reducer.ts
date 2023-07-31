@@ -83,7 +83,7 @@ export const reducer = (state: StateType = defaultState, action: ActionType): St
                 ...state,
                 inputMaxTitle: +action.payload.value >= state.inputMinTitle &&
                 +action.payload.value >= 0 ?
-                    +action.payload.value : state.inputMaxTitle,
+                    +action.payload.value :  +action.payload.value <0 ? 0: state.inputMinTitle,
                 error: +action.payload.value < 1 || +action.payload.value <= state.inputMinTitle ? 'Err1' :
                     state.inputMinTitle < 0 ? 'Err2' : state.value >= state.maxValue ? state.value.toString() : ''
             }
