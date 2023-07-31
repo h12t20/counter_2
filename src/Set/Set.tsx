@@ -2,13 +2,10 @@ import React, {ChangeEvent} from 'react';
 import s from './Set.module.css'
 import {Button} from "../Button/Button";
 import {Input} from "../Input/Input";
-import {useNavigate} from "react-router-dom";
-import {PATH} from "../Counter/Counter";
 import {useDispatch, useSelector} from "react-redux";
 import {maxTitleChangeAC, minTitleChangeAC, setHandlerAC, StateType} from "../Redux/reducer";
 
-export function Set() {
-    const navigate = useNavigate()
+export const Set=()=>{
     const inputMinTitle = useSelector<StateType, number>(state =>
         state.inputMinTitle);
     const inputMaxTitle = useSelector<StateType, number>(state =>
@@ -34,10 +31,7 @@ export function Set() {
             </div>
             <div className={s.buttonBlock}>
                 <Button disable={error[0] === 'E'}
-                        callback={() => {
-                            dispatch(setHandlerAC());
-                            navigate(PATH.COUNTER)
-                        }}
+                        callback={() => {dispatch(setHandlerAC())}}
                         name='set'
                         className={s.button}></Button>
             </div>

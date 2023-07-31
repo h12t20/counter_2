@@ -5,14 +5,17 @@ export type StateType = {
     error: string
     inputMinTitle: number
     inputMaxTitle: number
+    displaySet: boolean
 }
 export type ActionType = ResetACType | MinTitleChangeACType |
-    MaxTitleChangeACType | SetHandlerACType | IncHandlerACType
+    MaxTitleChangeACType | SetHandlerACType | IncHandlerACType | DisplaySetACType
 type ResetACType = ReturnType<typeof resetAC>
 type MinTitleChangeACType = ReturnType<typeof minTitleChangeAC>
 type MaxTitleChangeACType = ReturnType<typeof maxTitleChangeAC>
 type SetHandlerACType = ReturnType<typeof setHandlerAC>
 type IncHandlerACType = ReturnType<typeof incHandlerAC>
+type DisplaySetACType = ReturnType<typeof displaySetAC>
+
 export const resetAC = () => {
     return {
         type: 'RESET'
@@ -40,13 +43,19 @@ export const incHandlerAC = () => {
         type: 'INC_HANDLER'
     } as const
 }
+export const displaySetAC = () => {
+    return {
+        type: 'DISPLAY_SET'
+    } as const
+}
 const defaultState: StateType = {
     value: 0,
     minValue: 0,
     maxValue: 10,
     inputMinTitle: 0,
     inputMaxTitle: 10,
-    error: ''
+    error: '',
+    displaySet: false
 } as const
 export const reducer = (state: StateType = defaultState, action: ActionType): StateType => {
     switch (action.type) {
@@ -85,6 +94,7 @@ export const reducer = (state: StateType = defaultState, action: ActionType): St
                 minValue: state.inputMinTitle,
                 maxValue: state.inputMaxTitle,
                 value: state.inputMinTitle,
+                displaySet:false,
                 error: ''
             } : state
         }
@@ -94,6 +104,9 @@ export const reducer = (state: StateType = defaultState, action: ActionType): St
                 value: state.value < state.maxValue ? state.value + 1 : state.maxValue,
                 error: !state.error && state.value >= state.maxValue - 1 ? state.value.toString() : state.error
             } : state
+        }
+        case 'DISPLAY_SET': {
+            return {...state, displaySet:true}
         }
         default:
             return state

@@ -1,18 +1,10 @@
 import React from 'react';
 import s from './Counter.module.css';
 import {Button} from "../Button/Button";
-import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
-import {incHandlerAC, resetAC, StateType} from "../Redux/reducer";
+import {displaySetAC, incHandlerAC, resetAC, StateType} from "../Redux/reducer";
 
-export const PATH = {
-    COUNTER: '/counter',
-    SET: '/set'
-} as const
-
-export function Counter() {
-    const navigate = useNavigate()
-    const navigateSET = () => navigate(PATH.SET)
+export const Counter=()=>{
     const value = useSelector<StateType, number>(state =>
        state.value);
     const error = useSelector<StateType, string>(state =>
@@ -31,7 +23,7 @@ export function Counter() {
                         name='inc' className={s.button}></Button>
                 <Button disable={false} callback={() => dispatch(resetAC())} name='reset'
                         className={s.button}></Button>
-                <Button disable={false} name='set' callback={navigateSET}
+                <Button disable={false} name='set' callback={() => dispatch(displaySetAC())}
                         className={s.button}></Button>
             </div>
         </div>
