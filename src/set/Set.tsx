@@ -1,9 +1,9 @@
-import React, {ChangeEvent} from 'react';
+import React, {ChangeEvent, useCallback} from 'react';
 import s from './Set.module.css'
-import {Button} from "../Button/Button";
-import {Input} from "../Input/Input";
+import {Button} from "../button/Button";
+import {Input} from "../input/Input";
 import {useDispatch, useSelector} from "react-redux";
-import {maxTitleChangeAC, minTitleChangeAC, setHandlerAC, StateType} from "../Redux/reducer";
+import {maxTitleChangeAC, minTitleChangeAC, setHandlerAC, StateType} from "../redux/reducer";
 
 export const Set=()=>{
     const inputMinTitle = useSelector<StateType, number>(state =>
@@ -31,7 +31,7 @@ export const Set=()=>{
             </div>
             <div className={s.buttonBlock}>
                 <Button disable={error[0] === 'E'}
-                        callback={() => {dispatch(setHandlerAC())}}
+                        callback={useCallback(() => {dispatch(setHandlerAC())},[dispatch])}
                         name='set'
                         className={s.button}></Button>
             </div>

@@ -1,10 +1,10 @@
 import React from 'react';
 import s from './App.module.css';
-import {Logo} from '../Logo/Logo';
-import {Counter} from "../Counter/Counter";
-import {Set} from "../Set/Set";
+import {Logo} from '../logo/Logo';
+import {Counter} from "../counter/Counter";
+import {Set} from "../set/Set";
 import {useSelector} from "react-redux";
-import {StateType} from "../Redux/reducer";
+import {StateType} from "../redux/reducer";
 
 function App() {
     document.title='Counter';

@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import s from './Counter.module.css';
-import {Button} from "../Button/Button";
+import {Button} from "../button/Button";
 import {useDispatch, useSelector} from "react-redux";
-import {displaySetAC, incHandlerAC, resetAC, StateType} from "../Redux/reducer";
+import {displaySetAC, incHandlerAC, resetAC, StateType} from "../redux/reducer";
 
 export const Counter=()=>{
     const value = useSelector<StateType, number>(state =>
@@ -19,11 +19,14 @@ export const Counter=()=>{
                 </h1>
             </div>
             <div className={s.buttonBlock}>
-                <Button disable={!!error} callback={() => dispatch(incHandlerAC())}
+                <Button disable={!!error} callback={useCallback(() =>
+                    dispatch(incHandlerAC()),[dispatch])}
                         name='inc' className={s.button}></Button>
-                <Button disable={false} callback={() => dispatch(resetAC())} name='reset'
+                <Button disable={false} callback={useCallback(() =>
+                    dispatch(resetAC()),[dispatch])} name='reset'
                         className={s.button}></Button>
-                <Button disable={false} name='set' callback={() => dispatch(displaySetAC())}
+                <Button disable={false} name='set' callback={useCallback(() =>
+                    dispatch(displaySetAC()),[dispatch])}
                         className={s.button}></Button>
             </div>
         </div>
