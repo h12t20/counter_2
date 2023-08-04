@@ -12,11 +12,9 @@ const root = ReactDOM.createRoot(
 
 root.render(
     <div className={s.index}>
-        <React.StrictMode>
             <Provider store={store}>
                 <App/>
             </Provider>
-        </React.StrictMode>
     </div>
 )
 
